@@ -1,31 +1,31 @@
 import { useState, useEffect } from 'react';
-import { DidDhtMethod } from '@web5/dids';
+// import { DidDhtMethod } from '@web5/dids';
 
 export default function Employee() {
     const [employeeDid, setEmployeeDid] = useState('');
     const [vcJwt, setVcJwt] = useState('');
 
-    useEffect(() => {
-        const createDid = async () => {
-            const didObject = await DidDhtMethod.create();
-            setEmployeeDid(didObject.did);
-        };
+    // useEffect(() => {
+    //     const createDid = async () => {
+    //         const didObject = await DidDhtMethod.create();
+    //         setEmployeeDid(didObject.did);
+    //     };
 
-        createDid();
-    }, []);
+    //     createDid();
+    // }, []);
 
-    const copyToClipboard = () => {
-        navigator.clipboard.writeText(employeeDid);
-        alert('DID copied to clipboard!');
-    };
-
+    // const copyToClipboard = () => {
+    //     navigator.clipboard.writeText(employeeDid);
+    //     alert('DID copied to clipboard!');
+    // };
+   setEmployeeDid("did:web:u0x1b.5g6.2g3.4g5");
     return (
         <div>
             <h1>Employee</h1>
             {employeeDid && (
                 <div>
                     <strong>Your DID:</strong> {employeeDid}
-                    <button onClick={copyToClipboard}>Copy DID</button>
+                    {/* <button onClick={copyToClipboard}>Copy DID</button> */}
                 </div>
             )}
             <input
