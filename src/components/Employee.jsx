@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 export default function Employee() {
 
-   const employeeDid = "did:web:u0x1b.5g6.2g3.4g5"
+   const employeeDid = ("did:web:u0x1b.5g6.2g3.4g5");
     return (
         <div>
             <h1>Employee</h1>
@@ -12,14 +12,7 @@ export default function Employee() {
                     <strong>Your DID:</strong> {employeeDid}
                     {/* <button onClick={copyToClipboard}>Copy DID</button> */}
                 </div>
-            )}
-            <input
-                type="text"
-                placeholder="Enter VC JWT here"
-                value={vcJwt}
-                onChange={(e) => setVcJwt(e.target.value)}
-            />
-            {vcJwt && <div><strong>Received VC JWT:</strong> {vcJwt}</div>}
+            )} 
         </div>
     );
 }
