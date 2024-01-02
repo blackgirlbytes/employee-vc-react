@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { DidDhtMethod } from '@web5/dids';
+// import { DidDhtMethod } from '@web5/dids';
 
 export default function Employee() {
     const [employeeDid, setEmployeeDid] = useState('');
