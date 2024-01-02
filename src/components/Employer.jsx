@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import { VerifiableCredential } from '@web5/credentials';
+import { VerifiableCredential } from '@web5/credentials';
 import { DidDhtMethod } from '@web5/dids';
 
 export default function Employer() {
