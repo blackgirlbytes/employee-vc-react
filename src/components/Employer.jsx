@@ -1,6 +1,6 @@
 import { useState } from 'react';
-// import { VerifiableCredential } from '@web5/credentials';
-// import { DidDhtMethod } from '@web5/dids';
+import { VerifiableCredential } from '@web5/credentials';
+import { DidDhtMethod } from '@web5/dids';
 
 export default function Employer() {
     const [vcJwt, setVcJwt] = useState('');
