@@ -1,32 +1,40 @@
-import { useState } from "react";
-import { DidDhtMethod } from "@web5/dids";
+import { useState, useEffect } from 'react';
+import { DidDhtMethod } from '@web5/dids';
 
 export default function Employee() {
-  const [employeeDid, setEmployeeDid] = useState("");
-  const [vcJwt, setVcJwt] = useState("");
+    const [employeeDid, setEmployeeDid] = useState('');
+    const [vcJwt, setVcJwt] = useState('');
 
-  const handleCreateDid = async () => {
-    const didObject = await DidDhtMethod.create();
-    setEmployeeDid(didObject.did);
-  };
+    useEffect(() => {
+        const createDid = async () => {
+            const didObject = await DidDhtMethod.create();
+            setEmployeeDid(didObject.did);
+        };
 
-  // Rest of your component code...
+        createDid();
+    }, []);
 
-  return (
-    <div>
-      <h1>Employee</h1>
-      {!employeeDid && <button onClick={handleCreateDid}>Create DID</button>}
-      {employeeDid && (
+//     // const copyToClipboard = () => {
+//     //     navigator.clipboard.writeText(employeeDid);
+//     //     alert('DID copied to clipboard!');
+//     // };
+//    setEmployeeDid("did:web:u0x1b.5g6.2g3.4g5");
+    return (
         <div>
-          <strong>Your DID:</strong> {employeeDid}
+            <h1>Employee</h1>
+            {employeeDid && (
+                <div>
+                    <strong>Your DID:</strong> {employeeDid}
+                    {/* <button onClick={copyToClipboard}>Copy DID</button> */}
+                </div>
+            )}
+            <input
+                type="text"
+                placeholder="Enter VC JWT here"
+                value={vcJwt}
+                onChange={(e) => setVcJwt(e.target.value)}
+            />
+            {vcJwt && <div><strong>Received VC JWT:</strong> {vcJwt}</div>}
         </div>
-      )}
-      <input
-        type="text"
-        placeholder="Enter VC JWT here"
-        value={vcJwt}
-        onChange={(e) => setVcJwt(e.target.value)}
-      />
-    </div>
-  );
+    );
 }
