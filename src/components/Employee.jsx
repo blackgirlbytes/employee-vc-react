@@ -1,18 +1,32 @@
-import { useState, useEffect } from 'react';
-import { DidDhtMethod } from '@web5/dids';
+import { useState } from "react";
+import { DidDhtMethod } from "@web5/dids";
 
 export default function Employee() {
+  const [employeeDid, setEmployeeDid] = useState("");
+  const [vcJwt, setVcJwt] = useState("");
 
-   const employeeDid = ("did:web:u0x1b.5g6.2g3.4g5");
-    return (
+  const handleCreateDid = async () => {
+    const didObject = await DidDhtMethod.create();
+    setEmployeeDid(didObject.did);
+  };
+
+  // Rest of your component code...
+
+  return (
+    <div>
+      <h1>Employee</h1>
+      {!employeeDid && <button onClick={handleCreateDid}>Create DID</button>}
+      {employeeDid && (
         <div>
-            <h1>Employee</h1>
-            {employeeDid && (
-                <div>
-                    <strong>Your DID:</strong> {employeeDid}
-                    {/* <button onClick={copyToClipboard}>Copy DID</button> */}
-                </div>
-            )} 
+          <strong>Your DID:</strong> {employeeDid}
         </div>
-    );
+      )}
+      <input
+        type="text"
+        placeholder="Enter VC JWT here"
+        value={vcJwt}
+        onChange={(e) => setVcJwt(e.target.value)}
+      />
+    </div>
+  );
 }
