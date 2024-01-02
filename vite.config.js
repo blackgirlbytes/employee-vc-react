@@ -1,10 +1,15 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { esbuildCommonjs } from '@originjs/vite-plugin-commonjs'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    include: ['@web5/dids', '@web5/credentials'],
-  },
+    esbuildOptions: {
+      plugins: [
+        esbuildCommonjs(['@web5/credentials'])
+      ]
+    }
+  }
 })
+
