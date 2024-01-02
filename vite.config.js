@@ -1,15 +1,25 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { esbuildCommonjs } from '@originjs/vite-plugin-commonjs'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import commonjs from '@rollup/plugin-commonjs';
+import nodeResolve from '@rollup/plugin-node-resolve';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    commonjs(),
+    nodeResolve({
+      browser: true,
+    }),
+    // other plugins...
+  ],
   optimizeDeps: {
-    esbuildOptions: {
-      plugins: [
-        esbuildCommonjs(['@web5/credentials'])
-      ]
-    }
-  }
-})
+    include: ['@web5/credentials'],
+  },
+  build: {
+    rollupOptions: {
+      external: [], // any peer dependencies
+    },
+  },
+});
+
 
